@@ -1,6 +1,9 @@
+import 'package:drinkapp/models/user.dart';
 import 'package:drinkapp/screens/wrapper.dart';
+import 'package:drinkapp/services/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,13 +15,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return StreamProvider<UserApp>.value(
+      value: AuthService().user,
+      child: MaterialApp(
 /*       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ), */
-      home: Wrapper(),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ), */
+        home: Wrapper(),
+      ),
     );
   }
 }

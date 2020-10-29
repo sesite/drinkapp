@@ -1,6 +1,7 @@
+import 'package:drinkapp/models/user.dart';
 import 'package:drinkapp/screens/auth/Authenticate.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'home/home.dart';
 
 class Wrapper extends StatelessWidget {
@@ -8,8 +9,12 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Authenticate(),
-    );
+    final user = Provider.of<UserApp>(context);
+
+    if (user == null) {
+      return Authenticate();
+    } else {
+      return Home();
+    }
   }
 }

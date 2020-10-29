@@ -27,4 +27,13 @@ class AuthService {
   }
   //Вход по эл.почте и паролю
 
+  //Выход User
+  Future logOut() async {
+    try {
+      return _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }
