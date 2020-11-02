@@ -48,6 +48,7 @@ class _RegisterState extends State<Register> {
                     children: [
                       const SizedBox(height: 20.0),
                       TextFormField(
+                        decoration: InputDecoration(hintText: 'Email'),
                         validator: (value) =>
                             value.isEmpty ? 'Введите email' : null,
                         onChanged: (value) {
@@ -58,6 +59,7 @@ class _RegisterState extends State<Register> {
                       ),
                       const SizedBox(height: 20.0),
                       TextFormField(
+                        decoration: InputDecoration(hintText: 'password'),
                         validator: (value) => value.length < 6
                             ? 'Введите пароль не менее 6 символов'
                             : null,
