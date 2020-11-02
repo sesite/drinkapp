@@ -1,15 +1,15 @@
 import 'package:drinkapp/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key key, this.toggleView}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key key, this.toggleView}) : super(key: key);
   final Function toggleView;
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
@@ -23,14 +23,14 @@ class _SignInState extends State<SignIn> {
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
-        title: Text('Вход в приложение'),
+        title: Text('Регистрация в приложение'),
         actions: [
           FlatButton.icon(
             onPressed: () {
               widget.toggleView();
             },
             icon: Icon(Icons.person),
-            label: Text('Регистрация'),
+            label: Text('Войти'),
           ),
         ],
       ),
@@ -66,16 +66,18 @@ class _SignInState extends State<SignIn> {
                 RaisedButton(
                     color: Colors.pink[400],
                     child: Text(
-                      'Войти',
+                      'Зарегистрируйтесь',
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        dynamic result =
-                            await _auth.signFromEmailPassword(email, password);
+                        print(email);
+                        print(password);
+                        dynamic result = await _auth.registerFromEmailPassword(
+                            email, password);
                         if (result == null) {
                           setState(() {
-                            error = 'Неверный email или password';
+                            error = 'Неверный email';
                           });
                         } else
                           print('регистрация успешна!' + result.toString());

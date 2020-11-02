@@ -25,7 +25,31 @@ class AuthService {
       return null;
     }
   }
+
   //Вход по эл.почте и паролю
+  Future signFromEmailPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return _userFromFirebaseUser(result.user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //Регистрация по эл.почте и паролю
+  Future registerFromEmailPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      print('auth reg ' + _userFromFirebaseUser(result.user).toString());
+      return _userFromFirebaseUser(result.user);
+    } catch (e) {
+      print('auth not reg ' + e.toString());
+      return null;
+    }
+  }
 
   //Выход User
   Future logOut() async {
