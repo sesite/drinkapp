@@ -1,4 +1,5 @@
 import 'package:drinkapp/models/user.dart';
+import 'package:drinkapp/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -44,6 +45,11 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       print('auth reg ' + _userFromFirebaseUser(result.user).toString());
+
+      //при успешной регистрации создаем коллекцию в базе данных
+      await DatabaseService(uid: result.user.uid)
+          .updateUserData('0', result.user.email, 100);
+
       return _userFromFirebaseUser(result.user);
     } catch (e) {
       print('auth not reg ' + e.toString());
