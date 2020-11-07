@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.brown[200],
         appBar: AppBar(
-          title: Text('App Drink'),
+          title: Text('App Drink Coffee'),
           backgroundColor: Colors.brown[400],
           actions: [
             FlatButton.icon(
@@ -49,7 +49,14 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-        body: DrinkList(),
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/coffee_bg.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: DrinkList()),
       ),
     );
   }

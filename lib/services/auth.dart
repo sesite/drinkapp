@@ -48,7 +48,7 @@ class AuthService {
 
       //при успешной регистрации создаем коллекцию в базе данных
       await DatabaseService(uid: result.user.uid)
-          .updateUserData('0', result.user.email, 100);
+          .updateUserData('1', result.user.email, 100);
 
       return _userFromFirebaseUser(result.user);
     } catch (e) {

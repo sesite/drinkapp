@@ -14,11 +14,12 @@ class DrinkTile extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
           child: ListTile(
             leading: CircleAvatar(
-              radius: 25,
+              backgroundImage: AssetImage('assets/images/coffee_cup.png'),
+              radius: 28,
               backgroundColor: Colors.brown[drink.strength],
             ),
             title: Text(drink.name),
-            subtitle: Text('Мне нужно ${drink.sugars} кружек'),
+            subtitle: Text('Мне нужно ${drink.sugars} кубика сахара'),
           ),
         ),
       ),

@@ -50,27 +50,34 @@ class _SettingsFormState extends State<SettingsForm> {
                     items: sugars.map((sugar) {
                       return DropdownMenuItem(
                         value: sugar,
-                        child: Text('$sugar литров'),
+                        child: Text('$sugar кубика сахара'),
                       );
                     }).toList(),
                     onChanged: (val) => setState(() => _currentSugars = val),
                   ),
                   SizedBox(height: 20),
-                  Slider(
-                    min: 100.0,
-                    max: 900.0,
-                    value:
-                        (_currentStrength ?? snapshot.data.strength).toDouble(),
-                    divisions: 8,
-                    label: _currentStrength.toString(),
-                    activeColor: Colors
-                        .brown[_currentStrength ?? snapshot.data.strength],
-                    inactiveColor: Colors
-                        .brown[_currentStrength ?? snapshot.data.strength],
-                    onChanged: (val) =>
-                        setState(() => _currentStrength = val.toInt()),
+                  Row(
+                    children: [
+                      Text('Крепость'),
+                      Expanded(
+                        child: Slider(
+                          min: 100.0,
+                          max: 900.0,
+                          value: (_currentStrength ?? snapshot.data.strength)
+                              .toDouble(),
+                          divisions: 8,
+                          label: _currentStrength.toString(),
+                          activeColor: Colors.brown[
+                              _currentStrength ?? snapshot.data.strength],
+                          inactiveColor: Colors.brown[
+                              _currentStrength ?? snapshot.data.strength],
+                          onChanged: (val) =>
+                              setState(() => _currentStrength = val.toInt()),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 24),
                   RaisedButton(
                       color: Colors.pink[200],
                       child: Text('Обновить',
