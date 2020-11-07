@@ -14,7 +14,7 @@ class DrinkList extends StatefulWidget {
 class _DrinkListState extends State<DrinkList> {
   @override
   Widget build(BuildContext context) {
-    final drinks = Provider.of<List<Drink>>(context);
+    final drinks = Provider.of<List<Drink>>(context) ?? [];
 
     return ListView.builder(
         itemCount: drinks.length,

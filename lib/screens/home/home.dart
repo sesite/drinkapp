@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drinkapp/models/drink.dart';
 import 'package:drinkapp/screens/home/DrinksList.dart';
 import 'package:drinkapp/screens/home/settingsform.dart';

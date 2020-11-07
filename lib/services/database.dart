@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drinkapp/models/drink.dart';
+import 'package:drinkapp/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -29,8 +30,23 @@ class DatabaseService {
     }).toList();
   }
 
+//userData from snapshots
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      name: snapshot.data()['name'],
+      sugars: snapshot.data()['sugars'],
+      strength: snapshot.data()['strength'],
+    );
+  }
+
   // слушаем поток snapshots коллекций drinks
   Stream<List<Drink>> get drinks {
     return drinksCollection.snapshots().map(_drinksListFromSnapshot);
+  }
+
+// слушаем поток snapshots коллекции по uid
+  Stream<UserData> get userData {
+    return drinksCollection.doc(uid).snapshots().map(_userDataFromSnapshot);
   }
 }
