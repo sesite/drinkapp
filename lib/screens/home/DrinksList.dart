@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:drinkapp/models/drink.dart';
 import 'package:drinkapp/screens/home/drinktile.dart';
 import 'package:flutter/material.dart';
